@@ -1,0 +1,7 @@
+<h1>Add new category</h1>
+<%= form_for(@category) do |c| %>
+  <p><%= c.label :name %>
+    <%= c.text_field :name %> </p>
+  <%= c.submit %>
+<% end %>
+<%= link_to 'Back', {:controller => 'admins', :action => 'index'}%>

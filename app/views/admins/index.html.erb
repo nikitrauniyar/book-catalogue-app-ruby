@@ -1,0 +1,55 @@
+<h1 style="text-align: center">Welcome to Admin Console of Book Catalogue App</h1>
+<div style="text-align: center">
+  <%= form_tag "/search" do %>
+    <div>
+      <p><%= label_tag(:category, "Search By Category") %></p>
+      <p><%= collection_select(:category,:category_id, @categories, :id, :name) %></p>
+      <p><%=hidden_field(:logged, nil, :value=>true) %></p>
+    </div>
+    <%= submit_tag "Search" %>
+  <% end %>
+</div>
+<div style="margin:0 auto">
+  <% if @books.blank? %>
+    <p>There are not any books currently in the
+      system.</p>
+  <% else %>
+    <p>These are the current books in our
+      system</p>
+    <ul id="books">
+      <% @books.each do |b| %>
+        <li>
+          <%= b.title %> |
+          <%= link_to "Show", {:controller=>'books',:action => 'show', :id => b.id, :logged=>true} %>|
+            <%= link_to "Edit", {:controller=>'books',:action => 'edit', :id => b.id} %> |
+            <%= link_to "Delete", book_path(b), :controller=>'books', method: 'delete', data: { confirm: 'Are you sure?'} %> |
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+  <% if @categories.blank? %>
+    <p>There are not any categories currently in the
+      system.</p>
+  <% else %>
+    <p>These are the current categories in our
+      system</p>
+    <ul id="categories">
+      <% @categories.each do |c| %>
+        <li>
+          <%= c.name %> |
+          <%= link_to "Edit", {:controller=>'categories',:action => 'edit', :id => c.id} %> |
+          <%= link_to "Delete", category_path(c), :controller=>'categories', method: 'delete', data: { confirm: 'Are you sure?'} %> |
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+  <p>
+    <%= link_to "Add new Book", {:controller=>'books',:action => 'new' }%>
+  </p>
+  <p>
+    <%= link_to "Add new Category", {:controller=>'categories',:action => 'new' }%>
+  </p>
+  <p>
+    <%= link_to "Logout", :controller => 'books', :action => 'list'%>
+  </p>
+</div>

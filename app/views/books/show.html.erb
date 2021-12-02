@@ -1,0 +1,20 @@
+<h1><%= @book.title %></h1> <p>
+  <strong>Price: </strong>
+  $<%= @book.price %><br />
+  <strong>Category :</strong>
+  <%= @category.name %><br />
+  <strong>Author :</strong>
+  <%= @book.author %><br />
+  <strong>Published Date:</strong>
+  <%= @book.published_date %><br />
+  <strong>Description :</strong>
+  <%= @book.description %><br />
+</p>
+
+
+<hr />
+<%if @is_logged%>
+  <%= link_to 'Back', {:controller => 'admins', :action => 'index'} %>
+<%else %>
+  <%= link_to 'Back', {:controller => 'books', :action => 'list'} %>
+<%end %>

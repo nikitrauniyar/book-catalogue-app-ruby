@@ -1,0 +1,17 @@
+<h1>Edit Book</h1>
+<%= form_for(@book) do |b| %>
+  <p><%= b.label :title %>
+    <%= b.text_field :title %> </p>
+  <p> <%= b.label :category %>
+    <%= collection_select(:book,:category_id, @categories, :id, :name) %></p>
+  <p><%= b.label :author %>
+    <%= b.text_field :author %> </p>
+  <p><%= b.label :published_date %>
+    <%= b.text_field :published_date %> </p>
+  <p><%= b.label :price %>
+    <%= b.text_field :price %> </p>
+  <p><%= b.label :description %>
+    <%= b.text_field :description %> </p>
+  <%= b.submit %>
+<% end %>
+<%= link_to 'Back', {:controller => 'admins', :action => 'index'}%>
